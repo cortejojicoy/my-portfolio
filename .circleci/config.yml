@@ -11,20 +11,10 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm start
+      # - run: npm start
       # - run: npm test
 
 workflows:
   build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
-      - hold:
-          type: approval
-          requires:
-            - build
-      - deploy:
-          requires:
-            - hold
