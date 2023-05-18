@@ -17,8 +17,8 @@ jobs:
       # - run: npm test
 
 workflows:
-  build:
+  build-and-test:
     jobs:
-      - build:
+      - build-and-test:
           post-steps:
             - jira/notify
