@@ -4,14 +4,17 @@ orbs:
   jira: circleci/jira@1.3.1
 jobs:
   build:
-    docker:
-      - image: circleci/node:14
+    executor:
+      name: node/default
+    # docker:
+    #   - image: circleci/node:14
 
-    environment:
-      MY_VARIABLE: my_value
+    # environment:
+    #   MY_VARIABLE: my_value
 
     steps:
       - checkout
+      - node/install-packages
       - run: npm install
       # - run: npm start
       # - run: npm test
