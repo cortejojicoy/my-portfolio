@@ -25,6 +25,10 @@ jobs:
     steps: 
       - checkout
       - run:
+          name: Update Packages
+          command: sudo apt update && sudo apt upgrade
+          
+      - run:
           name: Install Firebase CLI
           command: sudo npm install -s firebase-tools
 
