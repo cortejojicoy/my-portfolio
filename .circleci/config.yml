@@ -24,6 +24,7 @@ jobs:
     
     steps: 
       - checkout
+      - run: npm install
       - run:
           name: Deploy to firebase
           command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
