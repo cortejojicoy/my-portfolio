@@ -5,6 +5,7 @@ const autoprefixer = require('gulp-autoprefixer');
 const minify = require('gulp-minify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
+const jsonminify = require('gulp-jsonminify');
 const sourcemaps = require('gulp-sourcemaps');
 const htmlmin = require('gulp-htmlmin');
 const stripImportExport = require('gulp-strip-import-export');
@@ -26,6 +27,7 @@ gulp.task('serve', function () {
     server: './dist',
   });
 
+  gulp.watch('src/assets/data/main.json', gulp.series('copy-json')).on('change', browserSync.reload);
   gulp.watch('src/assets/js/**/*.js', gulp.series('minify-js'));
   gulp.watch('src/assets/scss/**/*.scss', gulp.series('sass'));
   gulp.watch('src/pages/**/*.html', gulp.series('copy-html')).on('change', browserSync.reload);
@@ -51,6 +53,14 @@ gulp.task('minify-js', function() {
 });
 
 
+//Minify json data
+gulp.task('copy-json', function() {
+  return gulp.src('src/assets/data/main.json')
+    .pipe(jsonminify())
+    .pipe(gulp.dest('dist/data'));
+});
+
+
 // Copy HTML files
 gulp.task('copy-html', function () {
   return gulp
@@ -60,4 +70,4 @@ gulp.task('copy-html', function () {
 });
 
 // Default task
-gulp.task('default', gulp.parallel('copy-html', 'sass', 'serve', 'minify-js'));
+gulp.task('default', gulp.parallel('copy-html', 'sass', 'serve', 'minify-js', 'copy-json'));

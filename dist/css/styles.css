@@ -47,7 +47,9 @@ div.content {
   background-color: #ffffff;
   padding: 20px;
   width: 30%;
-  text-align: center; }
+  text-align: center;
+  border: 1px solid;
+  height: 100%; }
 
 div.default {
   background-color: #ffffff;

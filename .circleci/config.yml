@@ -15,6 +15,24 @@ jobs:
       - run: npm install
       # - run: npm start
       # - run: npm test
+  deploy:
+    docker:
+      - image: circleci/node:14
+    
+    environment:
+      FIREBASE_DEPLOY_TOKEN: 1//0gQpqrBotiwKRCgYIARAAGBASNwF-L9IritG514rXo2Vq0s2vtga0DtY_UNK17x72l4oDnkA_9lZt3Bwxf8wRIBNQi2Fu8v-a14s
+    
+    steps: 
+      - checkout
+      - run:
+          name: Install Firebase CLI
+          command: sudo npm install -s firebase-tools
+      
+      - run:
+          name: Deploy to firebase
+          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+          # command: echo $PATH
+
 
 workflows:
   build:
@@ -22,3 +40,6 @@ workflows:
       - build:
           post-steps:
             - jira/notify
+      - deploy: 
+          requires:
+            - build
