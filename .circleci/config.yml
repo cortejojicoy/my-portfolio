@@ -17,7 +17,7 @@ jobs:
       # - run: npm test
   deploy:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:19.6.0
     
     environment:
       FIREBASE_DEPLOY_TOKEN: 1//0gQpqrBotiwKRCgYIARAAGBASNwF-L9IritG514rXo2Vq0s2vtga0DtY_UNK17x72l4oDnkA_9lZt3Bwxf8wRIBNQi2Fu8v-a14s
