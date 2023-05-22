@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run:
           name: Install Firebase CLI
-          command: sudo npm install -g firebase-tools
+          command: sudo npm install -s firebase-tools
       
       - run:
           name: Deploy to firebase
