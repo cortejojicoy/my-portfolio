@@ -37,5 +37,4 @@ workflows:
             - jira/notify
       - deploy: 
           requires:
-            - build-job
-            
+            - build
