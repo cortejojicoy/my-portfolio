@@ -24,7 +24,7 @@ gulp.task('sass', function () {
 // Serve files and watch for changes
 gulp.task('serve', function () {
   browserSync.init({
-    server: './dist',
+    server: './public',
   });
 
   gulp.watch('src/assets/data/main.json', gulp.series('copy-json')).on('change', browserSync.reload);
@@ -49,7 +49,7 @@ gulp.task('minify-js', function() {
     // .pipe(jsImport({hideConsole: true}))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('public/js'));
 });
 
 
@@ -57,7 +57,7 @@ gulp.task('minify-js', function() {
 gulp.task('copy-json', function() {
   return gulp.src('src/assets/data/main.json')
     .pipe(jsonminify())
-    .pipe(gulp.dest('dist/data'));
+    .pipe(gulp.dest('public/data'));
 });
 
 
@@ -66,7 +66,7 @@ gulp.task('copy-html', function () {
   return gulp
     .src('src/pages/**/*.html')
     .pipe(htmlmin({ collapseWhitespace: true }))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('public'));
 });
 
 // Default task
