@@ -15,18 +15,18 @@ jobs:
       - run: npm install
       # - run: npm start
       # - run: npm test
-  deploy:
-    docker:
-      - image: circleci/node:14
+  # deploy:
+  #   docker:
+  #     - image: circleci/node:14
     
-    environment:
-      FIREBASE_TOKEN: 1//0gQpqrBotiwKRCgYIARAAGBASNwF-L9IritG514rXo2Vq0s2vtga0DtY_UNK17x72l4oDnkA_9lZt3Bwxf8wRIBNQi2Fu8v-a14s
+  #   environment:
+  #     FIREBASE_TOKEN: 1//0gQpqrBotiwKRCgYIARAAGBASNwF-L9IritG514rXo2Vq0s2vtga0DtY_UNK17x72l4oDnkA_9lZt3Bwxf8wRIBNQi2Fu8v-a14s
     
-    steps: 
-      - checkout
-      - run:
-          name: Deploy to firebase
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+  #   steps: 
+  #     - checkout
+  #     - run:
+  #         name: Deploy to firebase
+  #         command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
 
 
 workflows:
@@ -35,7 +35,7 @@ workflows:
       - build:
           post-steps:
             - jira/notify
-      - deploy: 
-          requires:
-            - build-job
+      # - deploy: 
+      #     requires:
+      #       - build-job
             
