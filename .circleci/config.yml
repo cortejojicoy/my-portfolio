@@ -33,7 +33,6 @@ jobs:
   #         command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
           # command: echo $PATH
 
-
 workflows:
   build:
     jobs:
