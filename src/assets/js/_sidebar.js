@@ -1,4 +1,5 @@
 import { renderPageContent } from './_content.js';
+import { initialize } from './api/fetchService.js';
 
 (function() {
     // const sidebarLinks = document.querySelectorAll('#sidebar a');
@@ -15,9 +16,12 @@ import { renderPageContent } from './_content.js';
 
     function handleLinkClick(event) {
         event.preventDefault();
-
+        
+        const hrefValue = this.getAttribute('href');
+        const removeHash = hrefValue.replace('#', '');
+        // console.log(hrefValue);
         const targetSection = document.querySelector(this.getAttribute('href'));
-        // console.log(targetSection);
         renderPageContent(targetSection);
+        initialize(removeHash);
     }
 })();
