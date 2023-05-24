@@ -1,9 +1,17 @@
 export function renderPageContent(targetSection) {
     const contentDivs = document.querySelectorAll('.content');
+    const defaultSection = document.querySelector('.default');
     
-    // console.log(contentDivs.getAttibute('id'));
     contentDivs.forEach(div => {
-        div.style.display = 'none';
+
+        if (defaultSection) {
+            defaultSection.style.display = 'none';
+            defaultSection.classList.remove('default');
+        } else {
+
+            div.style.display = 'none';
+        }
+
         // console.log(div.getAttribute('id') === 'project');
         // if(div.getAttribute('id') === 'project') {
         //     return div.style.display = 'block';
@@ -18,9 +26,9 @@ export function renderPageContent(targetSection) {
     // const defaultSection = document.querySelector('.default');
     // defaultSection.style.display = 'block';
     // Hide the default section if it has the 'default' class
-    const defaultSection = document.querySelector('.default');
-    if (defaultSection) {
-        defaultSection.style.display = 'none';
-        defaultSection.classList.remove('default');
-    }
+    // const defaultSection = document.querySelector('.default');
+    // if (defaultSection) {
+    //     defaultSection.style.display = 'none';
+    //     defaultSection.classList.remove('default');
+    // }
 }

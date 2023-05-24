@@ -3,13 +3,20 @@
         "project": [
             {
                 "id": 1,
-                "title": "Academic Management Information System",
+                "title": "Academic Management Information",
                 "body": ""
             },
             {
                 "id": 2,
                 "title": "Payroll Management System Revamp",
                 "body": ""
+            }
+        ]
+    },
+    {
+        "about": [
+            {
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
             }
         ]
     }
