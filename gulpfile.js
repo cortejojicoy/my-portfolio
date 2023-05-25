@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('node-sass'));
 const autoprefixer = require('gulp-autoprefixer');
-const uglify = require('gulp-uglify');
+// const uglify = require('gulp-uglify');
 const minify = require('gulp-minify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
@@ -40,12 +40,12 @@ gulp.task('minify-js', function() {
     .pipe(sourcemaps.init())
     .pipe(stripImportExport())
     .pipe(concat('main.js'))
-    .pipe(uglify())
-    // .pipe(minify({
-    //     ext: {
-    //         min: '.min.js'
-    //     }
-    // }))
+    // .pipe(uglify())
+    .pipe(minify({
+        ext: {
+            min: '.min.js'
+        }
+    }))
     .pipe(rename({ suffix: '' }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js'));
