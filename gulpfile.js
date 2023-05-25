@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass')(require('node-sass'));
 const autoprefixer = require('gulp-autoprefixer');
-// const uglify = require('gulp-uglify');
+const uglify = require('gulp-uglify');
 const minify = require('gulp-minify');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
@@ -17,7 +17,7 @@ gulp.task('sass', function () {
     .src('src/assets/scss/styles.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('public/css'))
     .pipe(browserSync.stream());
 });
 
@@ -46,8 +46,7 @@ gulp.task('minify-js', function() {
     //         min: '.min.js'
     //     }
     // }))
-    // .pipe(jsImport({hideConsole: true}))
-    .pipe(rename({ suffix: '.min' }))
+    .pipe(rename({ suffix: '' }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/js'));
 });

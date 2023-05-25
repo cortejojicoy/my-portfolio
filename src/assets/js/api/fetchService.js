@@ -2,17 +2,10 @@
 import { fetchItem } from "./dataService";
 
 export function initialize(link) {
-    const projectContainer = document.getElementById('projectContainer');
-    const aboutContainer = document.getElementById('aboutContainer');
-
-    // console.log(link)
     fetchItem()
         .then(data => {
             // Process the JSON data
-            const html = generateHTML(data, link);
-            // Update the HTML container
-            console.log(link)
-            projectContainer.innerHTML = html;
+            generateHTML(data, link);
         })
         .catch(err => {
             // Handle any errors
@@ -25,39 +18,29 @@ function generateHTML(data, link) {
     let html = '';
 
     const dataArray = [];
-    for(let i=0; i<data.length; i++) {
-        // const d = data[i];
-        dataArray.push(data[i]);
+    for (let i=0; i<data.length; i++) {
+        const obj = data[i];
+        for (const key in obj) {
+            if(key == link) {
+                dataArray.push(obj[key])
+            }
+        }
     }
-    // console.log(dataArray);
-    // dataArray[0].project.map((item) => {
-    //     html += `<li>${item.title}</li>`;
-    // })
 
-    dataArray.map((item) => {
-        console.log(item.project)
-    })
+    for (const arr of dataArray) {
+        arr.map((item) => {
+            html += `<li>${item.text}</li>`;
+        })
+    }
 
-
-    // if(link == '#project') {
-    //     // console.log(dataArray)
-    //     dataArray[0].project.map((item) => {
-    //         html += `<li>${item.title}</li>`;
-    //     })
-        
-    // }
-    
-    // if(link == '#about') {
-    //     // console.log(dataArray[1].about.text)
-    //     html += `<li>${dataArray[1].about.text}</li>`;
-    // }
-    
-    // else {
-    //     html += ''
-    // }
-    // for(let item of data) {
-    //     console.log(item.project)
-    //     // html += `<li>${item.title}</li>`;
-    // }
-    return html;
+    // Update the HTML container
+    if(link == 'project') {
+        const projectContainer = document.querySelector('.projectContainer');
+        return projectContainer.innerHTML = html;
+    } else if(link == 'about') {
+        const aboutContainer = document.querySelector('.aboutContainer');
+        return aboutContainer.innerHTML = html;
+    } else {
+        return html = '';
+    }
 }
