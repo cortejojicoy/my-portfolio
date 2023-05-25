@@ -40,12 +40,12 @@ gulp.task('minify-js', function() {
     .pipe(sourcemaps.init())
     .pipe(stripImportExport())
     .pipe(concat('main.js'))
-    // .pipe(uglify())
-    .pipe(minify({
-        ext: {
-            min: '.min.js'
-        }
-    }))
+    .pipe(uglify())
+    // .pipe(minify({
+    //     ext: {
+    //         min: '.min.js'
+    //     }
+    // }))
     // .pipe(jsImport({hideConsole: true}))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
